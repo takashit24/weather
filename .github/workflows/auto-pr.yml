@@ -1,0 +1,17 @@
+name: Auto PR
+on:
+  push:
+    branches:
+      - 'feature/**'
+jobs:
+  create-pr:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+      - uses: peter-evans/create-pull-request@v6
+        with:
+          title: 'feat: ${{ github.ref_name }}'
+          branch: ${{ github.ref_name }}
+          base: main
+          body: |
+            自動生成PR。テンプレを埋めてください。

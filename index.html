@@ -1,0 +1,22 @@
+<!DOCTYPE html>
+<html lang="ja">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>現在地の天気</title>
+  <link rel="stylesheet" href="styles.css" />
+</head>
+<body>
+  <main class="container">
+    <h1>現在地の天気</h1>
+    <section id="status" class="status">位置情報を取得しています…</section>
+    <section id="weather" class="weather hidden">
+      <p class="city"></p>
+      <p class="temperature"></p>
+      <p class="description"></p>
+    </section>
+    <button id="retry" class="retry hidden" type="button">再取得する</button>
+  </main>
+  <script src="app.js"></script>
+</body>
+</html>

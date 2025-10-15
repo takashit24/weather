@@ -1,22 +1,67 @@
 <!DOCTYPE html>
 <html lang="ja">
-<head>
-  <meta charset="UTF-8" />
-  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <title>現在地の天気</title>
-  <link rel="stylesheet" href="styles.css" />
-</head>
-<body>
-  <main class="container">
-    <h1>現在地の天気</h1>
-    <section id="status" class="status">位置情報を取得しています…</section>
-    <section id="weather" class="weather hidden">
-      <p class="city"></p>
-      <p class="temperature"></p>
-      <p class="description"></p>
-    </section>
-    <button id="retry" class="retry hidden" type="button">再取得する</button>
-  </main>
-  <script src="app.js"></script>
-</body>
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>現在地の天気 | Open-Meteo</title>
+    <link rel="stylesheet" href="styles.css" />
+  </head>
+  <body>
+    <main class="container">
+      <header class="header">
+        <h1>現在地の天気</h1>
+        <p class="lead">
+          現在地の天気と今日・明日の予報を表示します。位置情報を許可するか、
+          場所を検索してください。
+        </p>
+        <div class="header-actions">
+          <button id="geolocationButton" type="button">現在地を取得</button>
+        </div>
+      </header>
+
+      <section id="status" class="status" role="status" aria-live="polite">
+        位置情報を取得しています…
+      </section>
+
+      <section id="weather" class="card hidden" aria-live="polite">
+        <h2 id="location" class="location">-</h2>
+        <p id="updated" class="updated"></p>
+        <div class="current-weather">
+          <div class="current-temp">
+            <span id="temperature" class="temperature">--℃</span>
+            <span id="description" class="description">---</span>
+          </div>
+          <div class="current-extra">
+            <p id="windspeed" class="windspeed"></p>
+          </div>
+        </div>
+      </section>
+
+      <section id="forecast" class="card hidden">
+        <h2>今日と明日の予報</h2>
+        <ul id="forecastList" class="forecast-list"></ul>
+      </section>
+
+      <section class="card search-card">
+        <h2>場所を検索</h2>
+        <p class="search-intro">
+          位置情報が利用できない場合は、都市名や住所を入力して検索してください。
+        </p>
+        <form id="searchForm" class="search-form">
+          <label for="searchInput" class="visually-hidden">検索</label>
+          <input
+            id="searchInput"
+            type="text"
+            name="query"
+            placeholder="例：東京、大阪、札幌"
+            autocomplete="off"
+            required
+          />
+          <button type="submit">検索</button>
+        </form>
+        <ul id="searchResults" class="search-results"></ul>
+      </section>
+    </main>
+    <script src="app.js"></script>
+  </body>
 </html>
